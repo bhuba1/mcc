@@ -10,8 +10,9 @@ export class StatsComponent implements OnInit {
 
   public pointStats  = [];
   public aCategories = [];
+  public displayAvgPoints = true;
+  public selectedValue = "avgPoint";
   constructor(private _movieService: MovieService) { }
-
 
   ngOnInit(): void {
     
@@ -19,6 +20,16 @@ export class StatsComponent implements OnInit {
     this.aCategories = this._movieService.getAvailableCategories();
     console.log("points component:");
     console.log(this.pointStats);
+  }
+  onChange(event) {
+    console.log(event);
+    
+    console.log();
+    if(this.selectedValue == "avgPoint") {
+      this.displayAvgPoints = true;
+    }else {
+      this.displayAvgPoints = false;
+    }
   }
 
 }

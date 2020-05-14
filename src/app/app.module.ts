@@ -15,6 +15,7 @@ import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http'
 import { MovieService } from './movie.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MovieService } from './movie.service';
     MainNavComponent,
     routingComponents,
     TestComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -34,8 +36,8 @@ import { MovieService } from './movie.service';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
-  
+    HttpClientModule,
+    FormsModule
   ],
   providers: [MovieService],
   bootstrap: [AppComponent]
