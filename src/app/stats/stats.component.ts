@@ -11,6 +11,7 @@ export class StatsComponent implements OnInit {
   public pointStats  = [];
   public aCategories = [];
   public displayAvgPoints = true;
+  public displayAvgLen = false;
   public selectedValue = "avgPoint";
   constructor(private _movieService: MovieService) { }
 
@@ -29,6 +30,11 @@ export class StatsComponent implements OnInit {
       this.displayAvgPoints = true;
     }else {
       this.displayAvgPoints = false;
+    }
+    if(this.selectedValue == "avgLen") {
+      this.displayAvgLen = true;
+    }else {
+      this.displayAvgLen = false;
     }
   }
 

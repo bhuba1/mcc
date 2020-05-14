@@ -18,7 +18,12 @@
     
     <div  *ngIf="displayAvgPoints">
         <ul *ngFor="let stat of pointStats">
-            <li>{{stat.name}}: {{stat.avgPoint}} </li>
+            <li>{{stat.name}}: {{stat.avgPoint}} ⭐</li>
+        </ul>
+    </div>
+    <div  *ngIf="displayAvgLen">
+        <ul *ngFor="let stat of pointStats">
+            <li>{{stat.name}}: {{stat.avgLen}} perc</li>
         </ul>
     </div>
     

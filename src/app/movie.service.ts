@@ -46,7 +46,7 @@ export class MovieService {
       }
      
       for (let cat of categories) {
-        categorieStats.push({name:cat, point: 0+0, avgPoint:0, movieCount: 0})
+        categorieStats.push({name:cat, point: 0, avgPoint:0, len: 0, avgLen: 0, movieCount: 0})
       }
 
       for (let mov of movies) {
@@ -54,12 +54,15 @@ export class MovieService {
           if (mov.cat == cats.name){
             cats.movieCount += 1;
             cats.point += +mov.stat;
-            console.log("++");
+            cats.len += +mov.len;
+            
           }
         }
       }
       for (let cats of categorieStats) {
         cats.avgPoint = cats.point / cats.movieCount;
+        cats.avgLen = cats.len / cats.movieCount;
+        
       }
 
       console.log("categories service");
