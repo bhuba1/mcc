@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { IMovie } from './movie';
 import { Observable } from 'rxjs';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,12 +31,15 @@ export class MovieService {
       }
       console.log(categories);
     });
-    return categories
+    return categories;
   }
-
-  getCategoryPointStat(): number[] {
+  
+  getCategoryPointStats(): categoryStat[] {
     let categories = this.getAvailableCategories();
-    
-    return [2]
+    var Stats = [];
+    for (var  cat in categories) {
+      Stats.push(new categoryStat(cat));
+    }
+    return Stats;
   }
 }

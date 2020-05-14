@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-stats',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatsComponent implements OnInit {
 
-  constructor() { }
+  pointStats  = []
+  constructor(private _movieService: MovieService) { }
 
   ngOnInit(): void {
+    this.pointStats = this._movieService.getCategoryPointStats();
   }
 
 }
