@@ -15,4 +15,26 @@ export class MovieService {
   getMovies() : Observable<IMovie[]>{
     return this.http.get<IMovie[]>(this._url);
   }
+
+  getAvailableCategories() : string[] {
+    let categories = []
+    this.getMovies().subscribe(data => {
+      for (var val of data) {
+        if(!categories.includes(val.cat))
+        {
+          categories.push(val.cat);
+        }
+        
+        
+      }
+      console.log(categories);
+    });
+    return categories
+  }
+
+  getCategoryPointStat(): number[] {
+    let categories = this.getAvailableCategories();
+    
+    return [2]
+  }
 }
