@@ -1,5 +1,9 @@
 <div class = "content">
   <p>
-    Still working categories works!
+    Categories we have:
   </p>
+  <ul *ngFor="let movie of movies">
+    <li>{{movie.title}}</li>
+  
+  </ul>
 </div>

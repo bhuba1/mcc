@@ -13,7 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
-
+import {HttpClientModule} from '@angular/common/http'
+import { MovieService } from './movie.service';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,10 @@ import { HomeComponent } from './home/home.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    HttpClientModule
   
   ],
-  providers: [],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
