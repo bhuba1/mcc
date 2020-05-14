@@ -20,8 +20,8 @@ export class MovieService {
 
   getAvailableCategories() : string[] {
     let categories = []
-    this.getMovies().subscribe(data => {
-      for (var val of data) {
+    this.getMovies().subscribe(movies => {
+      for (var val of movies) {
         if(!categories.includes(val.cat))
         {
           categories.push(val.cat);
@@ -70,8 +70,54 @@ export class MovieService {
       console.log("categorieStat service");
       console.log(categorieStats);
     });
-   
-    
+     
     return categorieStats;
   }
+
+  getMaxMintInCategory (): {}[]{
+    let categories = [];
+    let categoriesMaxMin = [];
+    
+   
+    
+    this.getMovies().subscribe(movies => {
+      for (let val of movies) {
+        if(!categories.includes(val.cat))
+        {
+          categories.push(val.cat);
+        }
+      }
+      
+      for (let cat of categories) {
+        categoriesMaxMin.push({name: cat, maxLenName : "", maxLen : 0, minLenName : "", minLen : 1000000, 
+        maxStarName : "", maxStar: 0, minStarName : "", minStar : 100})
+      }
+
+      for (var mov of movies) {
+        for (let catm of categoriesMaxMin) {
+          if (mov.cat == catm.name && mov.len > catm.maxLen) {
+            catm.maxLen = mov.len;
+            catm.maxLenName = mov.title;
+          }
+          if (mov.cat == catm.name && mov.len < catm.minLen) {
+            catm.minLen = mov.len;
+            catm.minLenName = mov.title
+          }
+          if (mov.cat == catm.name && mov.stat > catm.maxStar) {
+            catm.maxStar = mov.stat;
+            catm.maxStarName = mov.title
+          }
+          if (mov.cat == catm.name && mov.stat < catm.minStar) {
+            catm.minStar = mov.stat;
+            catm.minStarName = mov.title
+          }
+        
+        }
+        
+    }
+    console.log(categories);
+    });
+    return categoriesMaxMin;
+  }
+  
 }

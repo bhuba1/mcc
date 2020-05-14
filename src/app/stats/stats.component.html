@@ -8,12 +8,11 @@
     -->
     <label for="stats">Statisztikák erre:</label>
     
-        
-        
-    
     <select (change)="onChange($event)" [(ngModel)]="selectedValue">
         <option value="avgPoint" selected="selected" >Átlagos értékeles</option>
         <option value="avgLen" >átlagos hossz</option>
+        <option value="minMaxLen" >Hossz min/max</option>
+        <option value="minMaxStars" >Értékelések min/max</option>
     </select>
     
     <div  *ngIf="displayAvgPoints">
@@ -26,5 +25,20 @@
             <li>{{stat.name}}: {{stat.avgLen}} perc</li>
         </ul>
     </div>
-    
+    <div  *ngIf="displayMinMaxLen">
+        <ul *ngFor="let stat of minMaxStats">
+            <li>A leghosszabb {{stat.name}}: {{stat.maxLenName}} - {{stat.maxLen}} perc</li>
+        </ul>
+        <ul *ngFor="let stat of minMaxStats">
+            <li>A legrövidebb {{stat.name}}: {{stat.minLenName}} - {{stat.minLen}} perc</li>
+        </ul>
+    </div>
+    <div  *ngIf="displayMinMaxStars">
+        <ul *ngFor="let stat of minMaxStats">
+            <li>A legjobbra értékelt {{stat.name}}: {{stat.maxStarName}} - {{stat.maxStar}} ⭐</li>
+        </ul>
+        <ul *ngFor="let stat of minMaxStats">
+            <li>A legrosszabbra értékelt {{stat.name}}: {{stat.minStarName}} - {{stat.minStar}} ⭐</li>
+        </ul>
+    </div>
 </div>
