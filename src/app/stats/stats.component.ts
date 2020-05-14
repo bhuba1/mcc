@@ -8,11 +8,17 @@ import { MovieService } from '../movie.service';
 })
 export class StatsComponent implements OnInit {
 
-  pointStats  = []
+  public pointStats  = [];
+  public aCategories = [];
   constructor(private _movieService: MovieService) { }
 
+
   ngOnInit(): void {
+    
     this.pointStats = this._movieService.getCategoryPointStats();
+    this.aCategories = this._movieService.getAvailableCategories();
+    console.log("points component:");
+    console.log(this.pointStats);
   }
 
 }

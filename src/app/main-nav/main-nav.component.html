@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar></mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       <a mat-list-item routerLink="/categories" routerLinkActive="active">Categories</a>
@@ -19,7 +19,7 @@
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon"></mat-icon>
       </button>
       <span>Movie Category comperator</span>
     </mat-toolbar>

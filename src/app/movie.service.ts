@@ -34,12 +34,41 @@ export class MovieService {
     return categories;
   }
   
-  getCategoryPointStats(): {name: string, point: number, pointStat: number, movieCount: number}[] {
-    let categories = this.getAvailableCategories();
-    var stats = [];
-    for (var  cat in categories) {
-      stats.push({name: cat});
-    }
-    return stats;
+  getCategoryPointStats(): {}[] {
+    let categories = [];
+    let categorieStats = [];
+    this.getMovies().subscribe(movies => {
+      for (let val of movies) {
+        if(!categories.includes(val.cat))
+        {
+          categories.push(val.cat);
+        }
+      }
+     
+      for (let cat of categories) {
+        categorieStats.push({name:cat, point: 0+0, avgPoint:0, movieCount: 0})
+      }
+
+      for (let mov of movies) {
+        for (let cats of categorieStats) {
+          if (mov.cat == cats.name){
+            cats.movieCount += 1;
+            cats.point += +mov.stat;
+            console.log("++");
+          }
+        }
+      }
+      for (let cats of categorieStats) {
+        cats.avgPoint = cats.point / cats.movieCount;
+      }
+
+      console.log("categories service");
+      console.log(categories);
+      console.log("categorieStat service");
+      console.log(categorieStats);
+    });
+   
+    
+    return categorieStats;
   }
 }

@@ -1,9 +1,17 @@
 <div class = "content">
-    <p>
-        Stats:
-    </p>
-    
+   
+    <!--
+    <select id="stats" name="stats" form="carform" >
+        <option *ngFor="let aCat of aCategories" value="{{aCat}}" >{{aCat}}</option>
+    </select>
+    -->
+    <label for="stats">Statisztikák erre:</label>
+    <select id="stats" name="stats" form="form" >
+        <option value="avgPoint" >Átlagos értékeles</option>
+        <option value="avgLen" >átlagos hossz</option>
+        
+    </select>
     <ul *ngFor="let stat of pointStats">
-        <li>{{stat.name}}</li>
+        <li>{{stat.name}}: {{stat.avgPoint}} </li>
     </ul>
 </div>
