@@ -34,12 +34,12 @@ export class MovieService {
     return categories;
   }
   
-  getCategoryPointStats(): categoryStat[] {
+  getCategoryPointStats(): {name: string, point: number, pointStat: number, movieCount: number}[] {
     let categories = this.getAvailableCategories();
-    var Stats = [];
+    var stats = [];
     for (var  cat in categories) {
-      Stats.push(new categoryStat(cat));
+      stats.push({name: cat});
     }
-    return Stats;
+    return stats;
   }
 }
