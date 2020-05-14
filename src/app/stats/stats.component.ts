@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stats',
-  template: `
-    <p>
-      stats works!
-    </p>
-  `,
+  templateUrl:'./stats.component.html',
   styles: []
 })
 export class StatsComponent implements OnInit {
