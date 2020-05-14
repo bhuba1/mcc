@@ -1,0 +1,35 @@
+.sidenav-container {
+  height: 100%;
+  
+}
+
+.sidenav {
+  width: 200px;
+  background-color: #282828;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 6px 15px 0px rgba(0,0,0,0.75);
+  box-shadow: 6px 6px 15px 0px rgba(0,0,0,0.75);
+}
+
+.sidenav .mat-toolbar {
+  background:gray;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #282828;
+}
+.mat-nav-list a{
+  color: beige;
+}
+.mat-nav-list a:hover{
+  background-color: burlywood;
+}
+.active {
+  color: red;
+}
+a{
+  margin-top: 5px;
+}
