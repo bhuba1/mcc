@@ -19,7 +19,7 @@ export class StatsComponent implements OnInit {
   public displayMinMaxStars = false;
   public displayedDataOnChart = [];
   public displayedCategoriesOnChart = [];
-
+  public bColor = 'rgba(222, 184, 135, 0.7)';
   constructor(private _movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -29,14 +29,11 @@ export class StatsComponent implements OnInit {
     
     var currentDataArray =  this._movieService.getCategoryPoints();
     var currentLegend = "Átlagos értékelések kategóriánként"
-    this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend}];
+    this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend, backgroundColor: this.bColor}];
     this.displayedCategoriesOnChart = this.aCategories;
     
-    console.log("points component:");
-    console.log(this.pointStats);
     
-    console.log("points minMaxStats:");
-    console.log(this.minMaxStats)
+  
   }
   onChange(event) {
     console.log(event);
@@ -46,24 +43,28 @@ export class StatsComponent implements OnInit {
       this.displayAvgPoints = true;
       var currentDataArray =  this._movieService.getCategoryPoints();
       var currentLegend = "Átlagos értékelések kategóriánként"
-      this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend}];
+      this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend , backgroundColor: this.bColor}];
     }else {
       this.displayAvgPoints = false;
     }
     if(this.selectedValue == "avgLen") {
       this.displayAvgLen = true;
       var currentDataArray = this._movieService.getCategoryLengths();
-      this.displayedDataOnChart = [{data : currentDataArray, label:"Átlagos hossz kategóriánként (perc)"}];
+      this.displayedDataOnChart = [{data : currentDataArray, label: "Átlagos hossz kategóriánként (perc)", backgroundColor: this.bColor}];
+      
     }else {
       this.displayAvgLen = false;
     }
     if(this.selectedValue == "minMaxLen") {
       this.displayMinMaxLen = true;
+      this.displayedDataOnChart = this._movieService.getMaxMinLenInCategoryChart();
+      
     }else {
       this.displayMinMaxLen = false;
     }
     if(this.selectedValue == "minMaxStars") {
       this.displayMinMaxStars = true;
+      this.displayedDataOnChart = this._movieService.getMaxMinStarInCategoryChart();
     }else {
       this.displayMinMaxStars = false;
     }

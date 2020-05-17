@@ -2,7 +2,7 @@
     {
         "title": "vígjáték film 1",
         "cat": "vígjáték",
-        "stat": "4",
+        "stat": "6",
         "stars": ["asd1","asd2"],
         "director": "director man",
         "len": "60"
@@ -10,7 +10,7 @@
       {
         "title": "akció film1",
         "cat": "akció",
-        "stat": "1",
+        "stat": "5",
         "stars": ["asd1","asd2"],
         "director": "director man",
         "len": "30"
@@ -18,7 +18,7 @@
       {
         "title": "akció film2",
         "cat": "akció",
-        "stat": "6",
+        "stat": "7",
         "stars": ["asd1","asd2"],
         "director": "director man",
         "len": "80"
@@ -26,7 +26,7 @@
       {
         "title": "thriller film",
         "cat": "thriller",
-        "stat": "1",
+        "stat": "5",
         "stars": ["asd1","asd2"],
         "director": "director man",
         "len": "120"
@@ -34,7 +34,7 @@
       {
         "title": "thriller film2",
         "cat": "thriller",
-        "stat": "4",
+        "stat": "6",
         "stars": ["asd1","asd2"],
         "director": "director man",
         "len": "220"
@@ -42,7 +42,7 @@
       {
         "title": "thriller film3",
         "cat": "thriller",
-        "stat": "5",
+        "stat": "8",
         "stars": ["asd1","asd2"],
         "director": "director man",
         "len": "160"

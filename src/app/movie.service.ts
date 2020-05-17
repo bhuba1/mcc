@@ -26,10 +26,7 @@ export class MovieService {
         {
           categories.push(val.cat);
         }
-        
-        
       }
-      console.log(categories);
     });
     return categories;
   }
@@ -65,11 +62,6 @@ export class MovieService {
         cats.avgLen = cats.len / cats.movieCount;
         
       }
-
-      console.log("categories service");
-      console.log(categories);
-      console.log("categorieStat service");
-      console.log(categorieStats);
     });
      
     return categorieStats;
@@ -198,13 +190,151 @@ export class MovieService {
             catm.minStar = mov.stat;
             catm.minStarName = mov.title
           }
-        
-        }
-        
-    }
-    console.log(categories);
+        }  
+      }
     });
+    
     return categoriesMaxMin;
   }
   
+  getMaxMinLenInCategoryChart (): {}[]{
+    let categories = [];
+    let categoriesMaxMin = [];
+    let categoriesMaxMinChart = [];
+   
+    
+    this.getMovies().subscribe(movies => {
+      for (let val of movies) {
+        if(!categories.includes(val.cat))
+        {
+          categories.push(val.cat);
+        }
+      }
+      
+      for (let cat of categories) {
+        categoriesMaxMin.push({name: cat, maxLenName : "", maxLen : 0, minLenName : "", minLen : 1000000, 
+        maxStarName : "", maxStar: 0, minStarName : "", minStar : 100})
+      }
+
+      for (var mov of movies) {
+        for (let catm of categoriesMaxMin) {
+          if (mov.cat == catm.name && mov.len > catm.maxLen) {
+            catm.maxLen = mov.len;
+            catm.maxLenName = mov.title;
+          }
+          if (mov.cat == catm.name && mov.len < catm.minLen) {
+            catm.minLen = mov.len;
+            catm.minLenName = mov.title
+          }
+          if (mov.cat == catm.name && mov.stat > catm.maxStar) {
+            catm.maxStar = mov.stat;
+            catm.maxStarName = mov.title
+          }
+          if (mov.cat == catm.name && mov.stat < catm.minStar) {
+            catm.minStar = mov.stat;
+            catm.minStarName = mov.title
+          }
+        }  
+      }
+      var categoriesCollection =[];
+      for (let cat of categories) {
+        categoriesCollection.push( {name:cat, max:0, min:0} );
+      }
+
+      for (let catm of categoriesMaxMin) {
+        for (let cat of categoriesCollection) {
+          if (cat.name == catm.name) {
+            cat.max = catm.maxLen;
+            cat.min = catm.minLen;
+          }
+        }
+      }
+      var max = [];
+      var min = [];
+      for (let catc of categoriesCollection) {
+        max.push(catc.max);
+        min.push(catc.min);
+        
+      }
+      categoriesMaxMinChart.push({data : max, label: "Max", backgroundColor: 'rgba(255, 99, 132, 0.5)'});
+      categoriesMaxMinChart.push({data : min, label: "Min", backgroundColor: 'rgba(54, 162, 235, 0.5)'});
+
+      
+    });
+
+    
+    
+    return categoriesMaxMinChart;
+  }
+
+  getMaxMinStarInCategoryChart (): {}[]{
+    let categories = [];
+    let categoriesMaxMin = [];
+    let categoriesMaxMinChart = [];
+   
+    
+    this.getMovies().subscribe(movies => {
+      for (let val of movies) {
+        if(!categories.includes(val.cat))
+        {
+          categories.push(val.cat);
+        }
+      }
+      
+      for (let cat of categories) {
+        categoriesMaxMin.push({name: cat, maxLenName : "", maxLen : 0, minLenName : "", minLen : 1000000, 
+        maxStarName : "", maxStar: 0, minStarName : "", minStar : 100})
+      }
+
+      for (var mov of movies) {
+        for (let catm of categoriesMaxMin) {
+          if (mov.cat == catm.name && mov.len > catm.maxLen) {
+            catm.maxLen = mov.len;
+            catm.maxLenName = mov.title;
+          }
+          if (mov.cat == catm.name && mov.len < catm.minLen) {
+            catm.minLen = mov.len;
+            catm.minLenName = mov.title
+          }
+          if (mov.cat == catm.name && mov.stat > catm.maxStar) {
+            catm.maxStar = mov.stat;
+            catm.maxStarName = mov.title
+          }
+          if (mov.cat == catm.name && mov.stat < catm.minStar) {
+            catm.minStar = mov.stat;
+            catm.minStarName = mov.title
+          }
+        }  
+      }
+      var categoriesCollection =[];
+      for (let cat of categories) {
+        categoriesCollection.push( {name:cat, max:0, min:0} );
+      }
+
+      for (let catm of categoriesMaxMin) {
+        for (let cat of categoriesCollection) {
+          if (cat.name == catm.name) {
+            cat.max = catm.maxStar;
+            cat.min = catm.minStar;
+          }
+        }
+      }
+      var max = [];
+      var min = [];
+      for (let catc of categoriesCollection) {
+        max.push(catc.max);
+        min.push(catc.min);
+        
+      }
+      categoriesMaxMinChart.push({data : max, label: "Max", backgroundColor: 'rgba(255, 99, 132, 0.5)'});
+      categoriesMaxMinChart.push({data : min, label: "Min", backgroundColor: 'rgba(54, 162, 235, 0.5)'});
+
+      
+    });
+
+    
+    
+    return categoriesMaxMinChart;
+  }
+
 }

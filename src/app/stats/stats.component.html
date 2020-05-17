@@ -6,11 +6,11 @@
         <option *ngFor="let aCat of aCategories" value="{{aCat}}" >{{aCat}}</option>
     </select>
     -->
-    <label for="stats">Statisztikák erre:</label>
+    <label for="stats">Statisztikák erre: </label>
     
     <select (change)="onChange($event)" [(ngModel)]="selectedValue">
         <option value="avgPoint" selected="selected" >Átlagos értékeles</option>
-        <option value="avgLen" >átlagos hossz</option>
+        <option value="avgLen" >Átlagos hossz</option>
         <option value="minMaxLen" >Hossz min/max</option>
         <option value="minMaxStars" >Értékelések min/max</option>
     </select>
@@ -43,5 +43,4 @@
             <li>A legrosszabbra értékelt {{stat.name}}: {{stat.minStarName}} - {{stat.minStar}} ⭐</li>
         </ul>
     </div>
-    
 </div>
