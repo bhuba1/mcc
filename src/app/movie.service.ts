@@ -37,6 +37,7 @@ export class MovieService {
   getCategoryPointStats(): {}[] {
     let categories = [];
     let categorieStats = [];
+    
     this.getMovies().subscribe(movies => {
       for (let val of movies) {
         if(!categories.includes(val.cat))
@@ -72,6 +73,49 @@ export class MovieService {
     });
      
     return categorieStats;
+  }
+
+  getCategoryPoints(): number[] {
+    let categories = [];
+    let categorieStats = [];
+    var CategoryPoints = [];
+    this.getMovies().subscribe(movies => {
+      for (let val of movies) {
+        if(!categories.includes(val.cat))
+        {
+          categories.push(val.cat);
+        }
+      }
+     
+      for (let cat of categories) {
+        categorieStats.push({name:cat, point: 0, avgPoint:0, len: 0, avgLen: 0, movieCount: 0})
+      }
+
+      for (let mov of movies) {
+        for (let cats of categorieStats) {
+          if (mov.cat == cats.name){
+            cats.movieCount += 1;
+            cats.point += +mov.stat;
+            cats.len += +mov.len;
+            
+          }
+        }
+      }
+      for (let cats of categorieStats) {
+        cats.avgPoint = cats.point / cats.movieCount;
+        cats.avgLen = cats.len / cats.movieCount;
+        
+      }
+
+      for (let point of categorieStats) {
+    
+        CategoryPoints.push(point.avgPoint);
+
+      }
+
+    });
+     
+    return CategoryPoints;
   }
 
   getMaxMintInCategory (): {}[]{

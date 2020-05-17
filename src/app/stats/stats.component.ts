@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 
+
 @Component({
   selector: 'app-stats',
   templateUrl:'./stats.component.html',
@@ -16,6 +17,8 @@ export class StatsComponent implements OnInit {
   public selectedValue = "avgPoint";
   public displayMinMaxLen = false;
   public displayMinMaxStars = false;
+  public displayedDataOnChart = [];
+  
 
   constructor(private _movieService: MovieService) { }
 
@@ -23,6 +26,10 @@ export class StatsComponent implements OnInit {
     this.aCategories = this._movieService.getAvailableCategories();
     this.pointStats = this._movieService.getCategoryPointStats();
     this.minMaxStats = this._movieService.getMaxMintInCategory();
+    
+    var currentDataArray =  this._movieService.getCategoryPoints();
+    var currentLegend = "Átlagos értékelések kategóriánként"
+    this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend}];
     
     console.log("points component:");
     console.log(this.pointStats);
@@ -41,6 +48,7 @@ export class StatsComponent implements OnInit {
     }
     if(this.selectedValue == "avgLen") {
       this.displayAvgLen = true;
+      this.displayedDataOnChart = [{data : [1,2,3], label:"test"}];
     }else {
       this.displayAvgLen = false;
     }

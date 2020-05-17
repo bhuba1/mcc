@@ -13,9 +13,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { MovieService } from './movie.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
+import { BarchartComponent } from './barchart/barchart.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     routingComponents,
     TestComponent,
     HomeComponent,
+    BarchartComponent
     
   ],
   imports: [
@@ -37,7 +41,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatListModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [MovieService],
   bootstrap: [AppComponent]
