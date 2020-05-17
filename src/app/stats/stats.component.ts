@@ -18,7 +18,7 @@ export class StatsComponent implements OnInit {
   public displayMinMaxLen = false;
   public displayMinMaxStars = false;
   public displayedDataOnChart = [];
-  
+  public displayedCategoriesOnChart = [];
 
   constructor(private _movieService: MovieService) { }
 
@@ -30,6 +30,7 @@ export class StatsComponent implements OnInit {
     var currentDataArray =  this._movieService.getCategoryPoints();
     var currentLegend = "Átlagos értékelések kategóriánként"
     this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend}];
+    this.displayedCategoriesOnChart = this.aCategories;
     
     console.log("points component:");
     console.log(this.pointStats);
@@ -43,12 +44,16 @@ export class StatsComponent implements OnInit {
     console.log();
     if(this.selectedValue == "avgPoint") {
       this.displayAvgPoints = true;
+      var currentDataArray =  this._movieService.getCategoryPoints();
+      var currentLegend = "Átlagos értékelések kategóriánként"
+      this.displayedDataOnChart = [{data : currentDataArray, label:currentLegend}];
     }else {
       this.displayAvgPoints = false;
     }
     if(this.selectedValue == "avgLen") {
       this.displayAvgLen = true;
-      this.displayedDataOnChart = [{data : [1,2,3], label:"test"}];
+      var currentDataArray = this._movieService.getCategoryLengths();
+      this.displayedDataOnChart = [{data : currentDataArray, label:"Átlagos hossz kategóriánként (perc)"}];
     }else {
       this.displayAvgLen = false;
     }

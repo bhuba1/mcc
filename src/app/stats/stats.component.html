@@ -15,7 +15,7 @@
         <option value="minMaxStars" >Értékelések min/max</option>
     </select>
     
-    <app-barchart [barChartLabels] =  "aCategories" [barChartData] = "displayedDataOnChart"></app-barchart>
+    <app-barchart [barChartLabels] =  "displayedCategoriesOnChart" [barChartData] = "displayedDataOnChart"></app-barchart>
     
     <div  *ngIf="displayAvgPoints">
         <ul *ngFor="let stat of pointStats">
